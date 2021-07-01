@@ -1,13 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="cf564ab2-5736-47b8-9705-9d5eccd236b1" name="Default Changelist" comment="" />
+    <list default="true" id="cf564ab2-5736-47b8-9705-9d5eccd236b1" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../BioIToolkits/BioIT and DataSt summary.md" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
   <component name="ProjectId" id="1uiaKbWAduyzSTm98oDccl9e6eB" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -16,7 +22,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/.." />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -34,6 +40,7 @@
       <workItem from="1625150801609" duration="179000" />
       <workItem from="1625151029644" duration="34000" />
       <workItem from="1625151084129" duration="714000" />
+      <workItem from="1625167567037" duration="23000" />
     </task>
     <servers />
   </component>
