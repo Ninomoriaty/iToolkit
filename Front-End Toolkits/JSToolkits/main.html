@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- JS: This part should be stored in a javascript file -->
+    <script type="text/javascript">
+        /* Variables */
+        /* ## Constant variable */
+        const var1 = 5;
+        /* ## Interactive variable */
+        var var2 = var1 + 2;
+        /* Comments: JS and html have different comments.*/
+
+        /* Define Function in JS*/
+        function displayMessage()
+        {
+            document.getElementById("p2").innerHTML = var2 + Date();
+        }
+    </script>
+
+    <!-- Load JS file -->
+    <script type="text/javascript" src="Basic_Introduction.js" ></script>
+
+</head>
+<body>
+    <!-- The text area for testing  -->
+    <h1>JavaScript examples</h1>
+    <p id="p1"> This is para 1</p>
+    <p id="p2"> This is para 2</p>
+    <p id="p3"> This is para 3</p>
+
+    <!-- Insert JavaScript and execute in the HTML file  -->
+    <script type="text/javascript">
+        document.getElementById("p1").innerHTML="Hello from script";
+    </script>
+
+    <!-- HTML Button with javascript function -->
+    <button type="button" onclick="displayMessage()">show message</button>
+
+</body>
+</html>

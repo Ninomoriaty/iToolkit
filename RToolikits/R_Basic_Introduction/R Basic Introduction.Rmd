@@ -1,0 +1,522 @@
+---
+title: "R Basic Introduction"
+author: "Nino Moriaty"
+output: html_notebook
+---
+
+Tips: Variables, Basic Operations, Control Structure, Customise Function, Batch Mode in Shell
+
+# Help issues
+```{r}
+# general help
+help.start() # homepage of R HTML manual
+
+# Help desk
+help(sort) # search in function names
+help(options) # Provides information about available options.
+help(package="package_name") # datasets ang functions
+?sort
+?"+" # like Haskell. You will need to use "" to figure out the operator rather than use the function of operators.
+
+help.search(sort)# search in function names, descriptions, arguments etc.
+??sort 
+
+apropos(sort, mode = "function") # list all functions with the string in their names
+
+RSiteSearch(sort) # search online manuals and R-Help discussion list
+
+
+# Vignettes
+vignette() # Lists all available vignettes for currently installed packages
+vignette("speed") # display the vignettes for topics in the arguments
+
+
+# Examples
+example(sort)
+
+
+# Demo
+demo()
+demo(Hershey)
+
+
+# Dataset attached with packages
+data() # Lists all available example datasets contained in currently loaded packages
+data(package = "pkgname")
+
+# Clear the R Console
+## Ctrl+L
+
+```
+
+# Customising the startup environment
+Tips: More details: "Appendix B: Invoking R" chapter in the book "Introduction to R" in https://cran.r-project.org/manuals.html
+
+**Cc**:
+1. `Rprofile.site`: a site-initialization file
+![Screenshot from 2020-10-09 17-40-44.png](https://i.loli.net/2020/10/10/F6ar3xewzP1GYgH.png)
+    1. 
+2. `.Rprofile`: a directory-initialization file 
+
+**Commands**: 
+```{r}
+# How to configure the startup environment
+help(Startup) 
+
+# get environemnt variable information
+## Tips: Sys is not the same as sys
+Sys.getenv() # List all environment variables
+Sys.getenv("R_HOME") # The environment variable containing the home directory of the R environment/pathway.
+Sys.getenv("HOME") # The settled workspace environment variable for R project
+
+# Execute before or after the R session 
+.First() # load pkgs that you commonly used
+.Last() # provide any cleanup activities, including archiving command histories, program output, and data files
+
+# set R options
+
+# specify a working directory
+
+# load commonly used packages
+
+# load user-written functions
+
+# set a default CRAN download site
+
+# others
+
+
+```
+
+
+
+# Manage your packages
+```{r}
+# library
+libPaths() # figure out the dir where stores packages
+library() # show the package lists in diffferent dirs
+library(rmarkdown) # load particular packages
+
+# list packages
+search() # lists packages are loaded and ready to use.
+installed.packages() # list the packages you have, along with their version numbers, dependencies, and other information.
+
+# install packages 
+install.packages() # show the CRAN mirror sites.
+install.packages("package_names")
+
+# update packages
+# Tips: it would be better to use a pkg management system to update pkgs.
+update.packages() # update all pkgs
+
+
+```
+
+
+
+# Manage the Workspace and Working Directory
+.RData and .Rhistory store the data and the command history for the current workspace and if you restart the same R project/worksapce, the R workspace will restore based on these two files.
+```{r}
+# Get the current working directory
+getwd()
+
+# create a directory
+dir.create(path = "pathname")
+
+# set the current working directory
+setwd("mydirectory") # Tips: The dir should be already existing.
+
+# Lists the objects in the current workspace. 
+ls()  # list the R workspace contents/objects from RAM (Not from the file system/documents)
+dir()  # list the directory contents of the current working directory (files in the directory)
+
+# Check the content of a file
+file.show("")
+
+# Removes (deletes) one or more objects.
+rm(objectlist) 
+
+# Lets you view or set current options.
+options()
+options(digits = 3) # set the digits after the decimal place
+
+# Displays your last n commands (default = 25).
+history(n) 
+savehistory(file="comnand_history_file") # Saves the commands history to myfile (default = .Rhistory).
+loadhistory(file="comnand_history_file") # Reloads a command’s history (default = .Rhistory).
+
+# Save the Workspace images
+save.image("my_workspace_file") # Saves the workspace to my_workspace_file (default = .RData).
+save(objectlist, file="my_workspace_file") # Saves specific objects to a file.
+load("my_workspace_file") # Load a workspace into the current session.
+q() # Quits R. You’ll be prompted to save the workspace. 
+
+# Tips: if the 
+
+```
+
+# Mt-Trick: Set the default pkg dir of current rstudio
+Ref: 
+1. https://stackoverflow.com/questions/15170399/change-r-default-library-path-using-libpaths-in-rprofile-site-fails-to-work#:~:text=To%20set%20environment%20variable%20R_LIBS_USER%20in%20Windows%2C%20go%20to%20the,to%20your%20library%20folder)%2C%20e.g.
+2. https://www.accelebrate.com/library/how-to-articles/r-rstudio-library
+
+Mt: 
+1. Find the dir of current use R and get into the R library like /home/ninomoriaty/anaconda3/pkgs/r-base-4.0.3-ha43b4e8_2/lib/R/library/base/R/Rprofile
+2. Open the Rprofile and add the lines below which redirect the pkg dir when the R is activated.
+3. Check if it is activated and it is good to use the pkgs library from conda or pip environment without activating these environemnts.
+
+```{r}
+# Add the pkg library that you want to add and save it in the Rprofile as Ref 2
+myPaths <- .libPaths()
+
+myPaths <- c(myPaths, '/CustomRlib')
+
+.libPaths(myPaths)  # add new path
+```
+
+
+
+
+# Data Types / Mode
+**Cc**
+1. Elements created in the Workspace are called objects
+
+
+## Numeric data (Integer, Float and Double and Complex (imaginary numbers) )
+### Integer
+```{r}
+int1 <- integer(1)
+
+# Round floats/doubles to integer
+print("##################### Round floats/doubles to integer #####################")
+int2 <- round(1.2)
+int3 <- round(1.5)
+int4 <- floor(1.5)
+int5 <- ceiling(1.2)
+print(c(int1, int2, int3, int4, int5))
+
+# Get the Result
+
+
+```
+### Float
+```{r}
+
+```
+### Double
+```{r}
+
+```
+### Complex
+```{r}
+
+```
+
+
+## Character data / String
+```{r}
+# String
+print("##################### String (Class/Object) #####################")
+strNum <- as.character(12)
+
+print(strNum)
+
+
+```
+
+
+
+## Boolean data
+```{r}
+# Basic Boolean Value(In R, TRUE and FALSE must be all upper-case while Python be True or False.)
+TRUE
+FALSE
+
+```
+
+
+## Raw (bytes).
+```{r}
+
+```
+
+
+
+# Data Structure / Class
+## Vector (1D)
+Tips: One vector contains one data type/mode, including numeric data, character data, or logical data
+Tips: Scalars are one-element vectors. However, they are mostly settled as constrants in R language.
+```{r}
+# Create a vector
+vector1 <- c(1, 2, 3)
+vector2 <- c(0, 1, 2)
+vector3 <- c(0, 0, 1)
+
+# Transform
+vector4 <- as.vector(array(c(1, 2, 3)))
+
+# Locate elements of a vector using a numeric vector
+vector1[1] # Tips: start from 1 rather than 0
+vector1[1:2]
+vector1[c(1:2)]
+vector1[c(1,2,3)]
+
+# Use conditional statement to figure out the element
+vector1 >= 2  # condition statement for each element of the vector
+vector2[vector1 >= 2]  # Get the value of the True condition in the vector
+
+# Vectors calculation
+vectorPlus <- vector1 + vector2
+print(vectorPlus)
+
+# Rearrange vectors
+
+
+
+```
+
+## Factors (Special)
+Tips: factors store nominal or ordinal variables
+
+## Matrix (2D)
+```{r}
+# Create Matrices
+print("##################### Create Matrix Object #####################")
+matrix1 <- matrix(c(1, 2, 3, 4, 5 , 6), byrow = TRUE)
+matrix1 <- matrix(1:20, nrow=5, ncol=4)  # By Default, the value will be filled by column 
+
+# Transform data object to matrix
+print("##################### Transform data object to matrix #####################")
+df2mat <- data.frame(c(1, 2, 3), c(2, 3, 4))
+matfdf <- as.matrix(df2mat) # plus a as. before the type of data structrue
+
+# Test if an object is a data type
+print("##################### Test if data type is matrix #####################")
+is.matrix(matrix1)
+is.matrix(matfdf)
+
+```
+
+## Array (Multi-dimensions)
+Tips: Specially, matries can be treated as 2D array, while data.frame or data.table will be a better representer of matrices in R.
+```{r}
+# Create Arrays
+## Create the array with the same numeric elements
+print("##################### Methods to create customised arrays #####################")
+array0 <- array(2, dim=c(2,3))
+## Create the array based on the vectors that you have
+array1 <- array(c(vector1, vector2, vector3))
+## Create the array with repeated number list and cut the vector into the dimension.
+array2 <- array(rep(c(1, 2, 3)), dim=c(3,3))  # You will find that the numbers are cut by columns but not by rows.
+
+
+# Check elements/rows/columns of the array
+print("##################### Choose elements/lines from arrays #####################")
+array1[2]  # if the arrary is 1D, the index should be one as well like vector
+array2[1, 2]  # The first index is row number and the second index is column number
+# Choose the row(s)
+array2[1, ]
+array2[c(1, 3), ]  # Specific rows from row 1 and row 2 (Not from row1 to row2)
+# Choose the column(s)
+array2[, 2]
+array2[, c(1,3)]
+# Choose the brick combined with rows and columns
+array2[c(1, 3), c(1, 2)]
+
+# Rearrange arrays
+
+
+
+# Show the outputs of this code section
+print("##################### Show the Final arrarys #####################")
+print(array1)
+print(array2)
+
+```
+
+## Data Frame (2.5D)
+Tips: `df` can store all kinds of *data types*
+```{r}
+# Create data frame
+df <- data.frame()
+df <- data.frame(matrix1, stringsAsFactors = FALSE) # stringAsFactors sometimes cause errors when reading strings in the df 
+
+# transformation
+df <- as.data.frame(x)
+
+# Create an emplty data frame with colnames or rownames
+data.frame(matrix(nrow=2,ncol=2))
+
+# assign rownames and colnames to df
+rownames(df) <- c("")
+colnames(df) <- c("")
+```
+
+## Data Table
+Tips: `dt` is a special data frame for `dplyr`
+Soc: `tidyverse` or specifically `dplyr`
+```{r}
+data.table()
+```
+
+## List
+Tips: `List` can contain all kinds of *data structures*
+```{r}
+# Create a list
+print("##################### Methods to create customised arrays #####################")
+ls1 <- list(vector1, matrix1)
+## Give list names for each elements in the list
+ls2 <- list(vec2=vector2, arr2=array2)
+
+# Extract factors in the list
+print("##################### Choose elements from lists #####################")
+ls2[[1]]
+ls2[[1]][1]  # Select an element from the object within list
+ls2[["arr2"]]  # Call the elements by the list name
+ls2$vec2
+
+print()
+
+
+```
+
+
+## Define your own class
+Tips: More information could be seen in the R Package Section in the Wiznote.
+```{r}
+class(strange)
+
+```
+
+
+# Mathematical operations and variables
+```{r}
+# Four basic operators
+1+1.5
+1-1.5
+1*2
+16/7
+
+# cal-related functions
+ages <- c(1,2,3,4,4,5,6)
+# Sum up the values in a vector/data frame
+sum(ages)
+# Calculate the mean
+mean(ages)
+# Calculate the standard deviation
+sd(ages)
+
+# Get the 
+max(ages)
+min(ages)
+range(ages)
+
+sort(ages)
+unique(ages)
+
+2*sqrt(2) # Attention: not Julia scientific expression however a more statistic way
+
+# The absolute value
+abs(-1.2)
+
+# sumarise some statistics results: min, 1st quantifile, median, mean, 3rd quantifile, max
+summary(c(1,2,0.3,0.04))
+
+
+
+
+```
+
+
+# Variable Assignment
+```{r}
+# Assign a value
+i <- 0  # general assignment with <-
+i2 = 0  # = can assign value to variable too, but this method is subtly different.
+
+# Delete a variable
+remove(i)
+rm(i2)
+```
+
+
+# Control Structure and Logic Combination
+Tips: Although it may be the habit from the functional programming, it will be possible to replace `for` loop with list manipulation.
+```{r}
+x <- 0
+for (x in range(1, 10)) {
+  x <- x + 1
+  print(x)
+}
+
+```
+
+## `while` loops
+```{r}
+x <- 0
+while (x <= 5) {
+  x <- x + 1
+  print(x)
+}
+
+```
+
+# Functions and Customisation
+```{r}
+# Define a general function
+absoluteMinus <- function(arg1, arg2) {
+  if (arg1 < arg2) {
+    return (arg2 - arg1)
+  } 
+  else {
+    return (arg1 - arg2)  
+  }
+}
+
+# Define a function with loops
+upToTen <- function(x){ # temp var
+  for (x in c(0,10)){
+    y <- x+1
+  }
+  print(y)
+}
+
+# Test the result of the function
+upToTen(i) # use the actual var to process the function
+absoluteMinus(1, 2)
+absolute
+
+# Test if the function is suitable
+func1(1, 2)
+
+# Remove a function
+remove(upToTen)
+
+```
+
+# Use the Unix Command
+```{r}
+# Put the Unix command within the ""
+system("ls")
+```
+
+
+# Download material from website
+```{r}
+# Download method and settle the  format
+download.file(url="http://www.ed.ac.uk", destfile="ed.html")
+file.show("ed.html")
+```
+
+
+# Other Tips and Details about R Programming
+1. By convention, script filenames end with an .R extension, but this isn’t required.
+
+
+# Batch Mode in Shell
+Tips: More details: "Appendix B: Invoking R" chapter in the book "Introduction to R" in https://cran.r-project.org/manuals.html
+```{bash}
+R CMD BATCH options infile outfile
+```
+
+

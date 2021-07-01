@@ -1,0 +1,12 @@
+---
+title: "Summarising the data"
+author: "Nino Moriaty"
+output: html_notebook
+---
+
+# Summarise the data results
+```{r}
+# sumarise some statistics results
+summary(object = obj1)
+```
+

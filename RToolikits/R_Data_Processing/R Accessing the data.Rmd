@@ -1,0 +1,104 @@
+---
+title: "R Accessing the data"
+author: "Nino Moriaty"
+output: html_notebook
+---
+
+# I/O and other interactions between R workspace and operating system
+## Basic R version
+```{bash}
+# Activate the R in the terminal or Console
+R
+# Test if the R is activated and check the version of R
+R --version
+# Check the information of 
+
+```
+
+## Read Data Files
+```{r}
+
+# Check the workspace before you try IO operations
+getwd()
+
+# exit the R workspace and R studio
+## q()
+
+# Sample outputs for tests in this code section
+var1 = data.frame(array(rep(c(1, 2, 3), 3), dim = c(3, 3)))
+
+# Output data in different data types
+write.table(var1, file = "Test.csv", 
+            row.names = FALSE, col.names = FALSE, 
+            sep = ",")
+write.csv(var1, file = "CSVtest.csv", 
+          row.names = FALSE, col.names = FALSE)
+
+# Input/Read data from the csv/tsv/Rdata files
+input1 <- read.csv("Test.csv", header = FALSE)
+input2 <- read.csv("CSVtest.csv", header = FALSE)
+input3 <- read.table("Test.csv", header = FALSE, sep = ",")
+input4 <- read.table("CSVtest.csv", header = FALSE, sep = ",")
+
+# Input dataset from package
+library(datasets)
+data(iris)  # from the `datasets` package
+summary(iris)
+
+# Show the final results to compare with the files generated from the variables
+print("##################### Show the Final variables #####################")
+print(var1)
+print(input1)
+print(input2)
+print(input3)
+print(input4)
+
+```
+
+# Input data
+## Files
+```{r}
+# Refer to other scripts
+source("pahtname") # if the file is in the current workspace, the filename could be used directly.
+
+# Input data
+table <- read.table(file) # data
+
+
+
+
+
+```
+
+# Inspect your data
+```{r}
+# show the class of your object
+class(var)
+# show the dimension of a variable, especially for data frame and data table.
+dim(df)
+```
+
+
+# Website
+
+
+
+
+# Annotating datasets
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

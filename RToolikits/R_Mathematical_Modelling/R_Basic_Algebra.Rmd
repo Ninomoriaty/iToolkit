@@ -1,0 +1,18 @@
+---
+title: "R Basic Algebra"
+author: "Nino Moriaty"
+output: html_notebook
+---
+
+# Matrix Manipulation
+```{r}
+# Matrices for this code section
+mat1 <- matrix(1:20, nrow=5, ncol=4)
+
+# Transpose the matrix
+print("##################### Transpose the matrix #####################")
+mat1
+t(mat1)
+
+```
+

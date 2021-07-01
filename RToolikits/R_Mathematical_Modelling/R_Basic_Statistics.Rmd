@@ -1,0 +1,258 @@
+---
+title: "R Basic Statistics"
+author: "Nino Moriaty"
+output: html_notebook
+---
+
+# Basic Probability Calculation
+```{r}
+# R script for Statistics Quiz
+# Set Theory
+A = c("A", "B", "C")
+B = c("A", "C", "D")
+union(A, B)
+intersect(A, B)
+
+# Sampling
+events = c("value1", "value2")
+sample(events, 6, replace=TRUE)
+
+# Factorials and combinations
+factorial(3)
+## not considering the order
+choose(100, 3) == choose(100, 97)
+## considering the order
+factorial(4) / factorial(4-3)
+## show the actual combinations
+sets = LETTERS[1:6]
+combn(sets, 4)
+
+```
+
+# Basic Distributions
+### Uniform Distribution
+```{r}
+
+##
+# Uniform Dsitribution
+dunif()
+punif()
+qunif()
+runif()
+```
+
+### Binomial Distribution
+```{r}
+# Binomial Distribution
+## PDF of binomial distribution
+x <- 0:5 # 20 is the sample size and 0 is the starting point
+y <- dbinom(x, size = 5, prob = 0.5)
+sum(y[x >= 4])
+plot(x,y,type = "s")
+
+## calculate the probability of particular value of event
+y[x == 8] # Pr(X=8) could also be cacluated in this way
+
+## calculate the probability of a intersection
+sum(y[x > 3 & x < 10]) # the same as follow
+yCum[x == 9] - yCum[x == 3]
+sum(y[x <= 8]) # the same as follow
+yCum[x == 8]
+
+## CDF of binomial distn
+yCum <- pbinom(q = x, size = 20, prob = 0.5)
+yCumRight <- pbinom(x, size=20, prob=0.5, lower.tail=FALSE) #  The lower tail (default) is calculating probabilities of at most, i.e. Pr(X ≤ x), but the upper tail is calculating probabilities of greater than, i.e. Pr(X > x).
+pbinom(10, size=10, prob=0.5, lower.tail=TRUE) + pbinom(10, size=10, prob=0.5, lower.tail=FALSE) == 1
+plot(x, yCum, type="s")
+abline(v=10, h=yCum[x == 10], col='red')
+plot(x, yCumRight, type="s")
+abline(v=10, h=yCumRight[x == 10], col='red')
+
+## undefined
+qbinom() and rbinom()
+
+```
+
+### Hypergenetic Distribution
+```{r}
+# Hypergenetic Distribution
+## PDF of Hypergenetic Distribution without replacement
+x <- 0:10
+y <- dhyper(x, 3, 2, 3)
+sum(y[x == 4])
+
+
+plot(x, y, type="s")s
+# Probability of X = x
+y[5]
+
+
+phyper()
+
+
+, qhyper() rhyper()
+```
+
+### The Poisson Distribution
+```{r}
+# The Poisson Distribution
+help(dpois)
+x <- 0:10
+y <- dpois(x, 3)
+sum(y[x <= 9])
+y[x == 0]
+## more than x event
+ppois(0, lambda=1.5)
+exp(-1.5) 
+```
+
+### Normal Distribution
+```{r}
+# Normal Distribution
+## PDF of normal distn
+x <- seq(-5, 5, by=0.5) # scale of the curve
+yDens <- dnorm(x) # standard normal distn
+yDensNs <- dnorm(x, mean = 10, sd = 2) # general normal distn
+plot(x, yDens, type='b')
+abline(v=0, h=0, col='red')
+
+## CDF of normal distn
+yCum <- pnorm(x)
+plot(x, yCum, type='b')
+
+abline(v=0, h=0.5, col='red')
+## plot the curve in a smooth way
+curve(dnorm, from=-5, to=5, main="PDF of a standard Normal Distribution") # PDF
+curve(pnorm, from=-5, to=5, main="CDF of a standard Normal Distribution") # CDF
+curve(dnorm(x, mean=15), from=10, to=20, main="PDF of a Normal Distribution with mean=15")
+
+## calculate the quantiles and precentiles of normal distn
+midQuantile <- qnorm(p=0.95, mean = 0, sd = 1)
+midPrecentile <- pnorm(q=midQuantile, mean = 0, sd = 1)
+
+## generate random values in normal distribution
+times <- 10000
+x <- rnorm(n=times, mean = 0, sd = 1)
+hist(x)
+hist(x, breaks=50, probability=TRUE) # use the probability rather than counts and break in more small boxes
+curve(dnorm, add=TRUE, col='red') # add the smooth curve for original normal distn
+
+# Associations and correlations
+x1 <- rnorm(10000, mean=100)
+x2 <- rnorm(10000, mean=100)
+plot(x1,x2)
+abline(h=100, v=100, col='red')
+
+err <- rnorm(10000, mean=0)
+x1 <- x1+err
+x2 <- x2+err
+plot(x1,x2)
+abline(h=100, v=100, col='red')
+
+
+## calculate the covariance
+cov(x1, x2)
+
+## calculate the correlation coefficient
+cor(x1, x2)
+cor.test(x1, x2)$p.value # p-value test in correlation
+
+# Manipulating and combining logical vectors in R
+num <- 1:10
+big <- num > 6
+small <- num < 4
+num[big]
+num[small]
+!small
+num[!small]
+small & big
+small | big
+num[small | big]
+
+```
+
+
+# Statistics Inference
+```{r}
+
+# Fitting linear Models
+lmfit <- lm(mpg~wt, data=mtcars)
+summary(lmfit) 
+plot(lmfit)
+cook<-cooks.distance(lmfit) 
+plot(cook)
+predict(lmfit, mynewdata)
+
+```
+
+# t test
+```{r}
+N <-10
+S_XY<-4
+S_XX<-10
+S_YY<-11
+
+b_1<-S_XY/S_XX
+
+S_Resid<-S_YY-S_XY*b_1
+
+sigma2<-S_Resid/3
+
+SE_b_1<-sqrt(sigma2/S_XX)
+
+t <-abs(b_1/SE_b_1)
+
+lvofconf <- pt(((0.5/SE_b_1)-t), N-2)
+
+q<-qt(c(1-lvofconf, lvofconf), N-2)
+
+q.se<-t+q
+
+print(q.se*SE_b_1)
+
+print(lvofconf)
+
+```
+
+
+# Multiple Test
+```{r}
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

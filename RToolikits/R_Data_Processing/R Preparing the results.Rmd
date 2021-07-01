@@ -1,0 +1,65 @@
+---
+title: "Preparing the results"
+author: "Nino Moriaty"
+output: html_notebook
+---
+
+
+# Graphic Output
+Tips: Graphic Collector, the plotting scripts should be placed behind these commands.
+```{r}
+bmp("filename.bmp") # BMP file
+jpeg("filename.jpg") # JPEG file
+pdf("filename.pdf") # PDF file
+png("filename.png") # PNG file
+postscript("filename.ps") # PostScript file
+svg("filename.svg") # SVG file
+win.metafile("filename.wmf") # Windows metafile
+
+# Return Output to Terminal
+dev.off()
+
+```
+
+
+
+# Redirect the Output to files 
+Tips: Somehow similar to the Shell I/O Redirection, it means that ALL outputs would be directed to your option until you turn off it. It could be considered as a collector of results and that's why it could collect the results/functions/scripts behind it.
+```{r}
+# Text Output
+sink(file = "fliename") # overwritten, 
+sink(file = "filename", append=TRUE) # append in the same file
+sink(file = "filename", split=TRUE) # send the output to the screen and file
+sink() # return the results to the screen
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

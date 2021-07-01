@@ -1,0 +1,84 @@
+---
+title: "R BioInformatics and Bioconductor"
+author: "Nino Moriaty"
+output: html_notebook
+---
+
+
+# Tips: About the R notebook
+Actually the working directory will be reset when the chunk is finished running. If you want to change the workspace for the code sections, you should use the knitr root.dir option in the setup chunk to change the working directory for notebook chunks.
+
+
+# Installation
+```{r}
+# Common installation method for Bioconductor Packages
+# BiocManager::install("affy")
+# 
+
+```
+
+
+# Check the manual from Bioconductor
+Tips: Then you will find the information of the package with a website browser.
+```{r}
+browseVignettes("affy")
+
+```
+
+
+# Packages for this notebook
+```{r}
+library(affy)
+
+```
+
+
+# Microarray Analysis-Affymetrix
+# Read the Affymetrix data from CEL file
+R: The CEL file will be read as AffyBatch type and You can view the data structure.
+```{r}
+# Preparation for the working space
+## Set the data directory
+setwd("/media/ninomoriaty/My Passport/2 作死日常/2 MSc/Semester 2/Functional Genomic Technologies/FGT-Course/Week3")
+
+## Before read the files, you should remember to simply confirm them with getwd/ls/dir
+dir()
+
+# Read the Affymetrix data from CEL file
+## Mt1-Read All files in the working directory
+celAll <- ReadAffy()
+celSelect <- ReadAffy("GSM272753.CEL")  # Mt1-Read Specified files in the given directory
+
+## Mt2-Read files and create a new data object
+test <- read.table("afile.txt", sep = "\t", header = TRUE, row.names = 1, as.is = TRUE)
+celMat <- as.matrix(test)
+# Create data object from existing data object 
+exprset1 <- new("ExpressionSet", exprs = celMat)  # Build expression set with numerical data
+ls()  # Check the objects in the current working space.
+
+## Mt3-Just for example, you can load microarray data within `Biobase` package
+data("sample.ExpressionSet")
+mymatrix <- exprs(sample.ExpressionSet)  # Extract a numerical matrix
+mymatrix[1:10, ]
+mynames <- sampleNames(sample.ExpressionSet)  # Extract sample names
+mynames
+
+```
+
+
+```{r}
+
+iris
+```
+
+
+# Normalise the with RMA or MAS-5
+R: The AffyBatch type will be converted to ExpressSet type and the data (TODO: Understand the principles for the information and ).
+```{r}
+
+```
+
+
+
+
+

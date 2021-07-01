@@ -1,0 +1,77 @@
+---
+title: "R Visualising the data"
+author: "Nino Moriaty"
+output: html_notebook
+---
+
+# Pcp-Visualisation and usage
+- This notebook record multiple methods to generate different plot with general R visualisation packages
+
+# Packages for visuallisation
+```{r}
+library(ggplot2)
+library(gplots)
+```
+## ggplot2
+**Ref**
+-  ggplot2 is one project in the tidyverse: https://ggplot2.tidyverse.org/
+**Cc/Ab**
+- ggplot2 generates figures with the principle of layers
+- 
+yyyyuuyyy
+## gplots
+**Ref**
+- R Docuemntation for gplots: https://www.rdocumentation.org/packages/gplots/versions/3.1.1
+**Ab**
+- gplots is not the same as ggplot or ggplot2, it is a 
+
+
+# Scatter Plot
+**Pcp**
+- Scatter Plot shows the distribution of the data points 
+- Thus, major attributes of scatter plot is the adjustment of data points.
+
+## r-base plot method
+Lk: Another method for scatter plot can be found in the `Generate a picture file with png or pdf format` section in this notebook.
+```{r}
+# Load data
+spData <- as.matrix(mtcars)
+
+# Select the row/column to represent the data points in (x, y)
+plot(spData[, 'mpg'], spData[, 'hp'])
+
+# Customise points
+plot(spData[, 'mpg'], spData[, 'hp'], 
+     col = 'red',  # Att: col means colors but not column as ususal in R
+     pch = 12)  # The shape of the data point: Differ different data points from different sets of data
+# TODO: How to change the size and the alpha of the points 
+
+# Customise axis
+plot(spData[, 'mpg'], spData[, 'hp'], xlab = "MPG", ylab = "HP")  # Customise the axis labels
+
+# Pair data from each column against EVERY other column
+spData[1:4, 1:4]
+pairs(spData[1:4, 1:4])
+
+```
+## ggplot2 method
+## gplots method
+
+# Histogram/Barcharts
+```{r}
+# Load data
+
+
+```
+
+
+# 
+
+# Generate a picture file with png or pdf format
+```{r}
+testplot <- c(0, 1, 2, 3)
+png("pngtest.png")
+plot(testplot, type="l", col="blue")
+points(testplot, col="red")  # Another 
+dev.off()
+```
