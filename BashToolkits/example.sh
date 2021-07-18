@@ -136,3 +136,16 @@ function x(){
 	# $1 and $2 will follow the input order
 	$1 + $2
 	}# 
+
+
+#################### AWK Methods ####################
+#!/usr/bin/awk -f
+BEGIN {FS="\t";OFS="_";} {count++;if($1 != "#")  
+{
+	print "Currently doing "count ;
+	total=total + ($12 * $3)  }}
+	END {print "The total for "count" lines was " int(total) > "awkoutputfile.txt";
+	print "Script run complete." >> "awkoutputfile.txt" ;
+	print "Script run complete."system("ls -alrt *awk*")
+}
+
